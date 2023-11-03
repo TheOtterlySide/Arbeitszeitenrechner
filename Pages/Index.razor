@@ -2,13 +2,71 @@
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="PauseTime">
+    <h1>Pausen</h1>
+    <button @onclick=@(_ => setPauseValue(0))>0 Minuten</button>
+    <button @onclick=@(_ => setPauseValue(30))>30 Minuten</button>
+    <button @onclick=@(_ => setPauseValue(45))>45 Minuten</button>
+</div>
 
-Welcome to your new app.
+<div class="WorkTime">
+    <h1>Arbeitszeit</h1>
+    <button @onclick=@(_ => setWorkValue(6))>6 Stunden</button>
+    <button @onclick=@(_ => setWorkValue(7))>7 Stunden</button>
+    <button @onclick=@(_ => setWorkValue(8))>8 Stunden</button>
+    <button @onclick=@(_ => setWorkValue(10))>10 Stunden</button>
+</div>
 
-<SurveyPrompt Title="How is Blazor working for you?"/>
+<button @onclick=@(_ => calculateTime(workValue, pauseValue))> Berrechne Zeit </button>
+
+<div class="ActualTime">
+    <div class="StartDate">
+        <input type="time" @bind="starttime"/>
+    </div>
+    <div class="EndDate">
+        <input type="time" @bind="endtime"/>
+    </div>
+
+
+    <label>Starttime Value</label>
+    <label>@starttime</label>
+    <label>Pause @pauseValue</label>
+    <label>Work @workValue</label>
+    <label>Time @time</label>
+</div>
 
 @code
 {
-    
+    TimeSpan pauseValue;
+    TimeSpan workValue;
+    DateTime starttime;
+    DateTime endtime;
+    TimeSpan resultTime;
+    DateTime time;
+
+    private void setPauseValue(int val)
+    {
+        pauseValue = new TimeSpan(0, val, 0);
+        StateHasChanged();
+    }
+
+
+    private void setWorkValue(int val)
+    {
+        workValue = new TimeSpan(val, 0, 0);
+        ;
+        StateHasChanged();
+    }
+
+    void setStartTime(DateTime time)
+    {
+        starttime = time;
+        StateHasChanged();
+    }
+
+    void calculateTime(TimeSpan hours, TimeSpan minutes)
+    {
+        time = starttime + DateTime.Today.TimeOfDay + hours + minutes;
+        StateHasChanged();
+    }
 }

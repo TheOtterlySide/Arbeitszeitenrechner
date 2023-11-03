@@ -197,13 +197,13 @@
       "mscorlib.dll": "sha256-D5WOduwfHIVs16sd8pVfNv4Eds9tQ2NT8i76hAjMR+0=",
       "netstandard.dll": "sha256-pScPb55DPeUUjIV7Sb2kpm97MKENOFkNOtft8Qn3ZfY=",
       "System.Private.CoreLib.dll": "sha256-OiJzDXtKEcx9+mdD6IUHYTZSmYtzbH4kfWQS\/PsOTOg=",
-      "Arbeitszeitenrechner.dll": "sha256-3rt0lcOVPDgyHecqXdoIrBRcqLhQUSfIWImsIB0Vs4U="
+      "Arbeitszeitenrechner.dll": "sha256-iOH7qyWZ5yksMHPbTITzbOIAqAZrZ86o+V\/\/TJZBu+Y="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "Arbeitszeitenrechner.pdb": "sha256-bgUPKrwS0lyRMqPimS9yINytDccWVss4P\/4Uzeq9I6U="
+      "Arbeitszeitenrechner.pdb": "sha256-VkGObbGizA5\/82bJ3PQRCKi9sC\/ERd4IHid+VdM1g18="
     },
     "runtime": {
       "dotnet.6.0.24.h7yi1elgym.js": "sha256-0zvLbm2N57A5LNSoUWIIMXXq7ldIwes8W5WY9\/G84GE=",
