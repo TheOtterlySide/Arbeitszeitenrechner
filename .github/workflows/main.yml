@@ -23,8 +23,8 @@ jobs:
     - name: Publish .NET Core Project
       run: dotnet publish Arbeitszeitenrechner.csproj -c Release -o release --nologo
     
-    # changes the base-tag in index.html from '/' to 'BlazorGitHubPagesDemo' to match GitHub Pages repository subdirectory
-    - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
+    # changes the base-tag in index.html from '/' to 'Arbeitszeitenrechner' to match GitHub Pages repository subdirectory
+    - name: Change base-tag in index.html from / to Arbeitszeitenrechner
       run: sed -i 's/<base href="\/" \/>/<base href="\/Arbeitszeitenrechner\/" \/>/g' release/wwwroot/index.html
     
     # copy index.html to 404.html to serve the same file when a file is not found
