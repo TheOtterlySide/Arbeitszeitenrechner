@@ -2,23 +2,43 @@
 
 <PageTitle>Index</PageTitle>
 
-<div class="PauseTime">
-    <h1>Pausen</h1>
-    <button @onclick=@(_ => setPauseValue(0))>0 Minuten</button>
-    <button @onclick=@(_ => setPauseValue(30))>30 Minuten</button>
-    <button @onclick=@(_ => setPauseValue(45))>45 Minuten</button>
+<div class="row">
+
+    <div class="col-lg-6" data-toggle="buttons">
+        <h1>Pausen</h1>
+    </div>
+    <div class="col-lg-6">
+         <h1>Arbeitszeit</h1>
+    </div>
+    <div class="row">
+        <div class="btn-group btn-group-toggle col-lg-6">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" @onclick=@(_ => setPauseValue(0))>
+                    <label class="btn btn-outline-primary" for="btnradio1">0 Minuten</label>
+            
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" @onclick=@(_ => setPauseValue(30))>
+                    <label class="btn btn-outline-primary" for="btnradio2">30</label>
+            
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" @onclick=@(_ => setPauseValue(45))>
+                    <label class="btn btn-outline-primary" for="btnradio3">45</label>
+        </div>
+         <div class="btn-group btn-group-toggle col-lg-6" data-toggle="buttons">
+               
+                <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work1" autocomplete="off" @onclick=@(_ => setWorkValue(6))>
+                <label class="btn btn-outline-primary" for="btn-radio_Work1">0 Minuten</label>
+        
+                <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work2" autocomplete="off" @onclick=@(_ => setWorkValue(8))>
+                <label class="btn btn-outline-primary" for="btn-radio_Work2">30</label>
+        
+                <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work3" autocomplete="off" @onclick=@(_ => setWorkValue(10))>
+                <label class="btn btn-outline-primary" for="btn-radio_Work3">45</label>
+            </div>
+    </div>
+
+   
 </div>
 
-<div class="WorkTime">
-    <h1>Arbeitszeit</h1>
-    <button @onclick=@(_ => setWorkValue(6))>6 Stunden</button>
-    <button @onclick=@(_ => setWorkValue(7))>7 Stunden</button>
-    <button @onclick=@(_ => setWorkValue(8))>8 Stunden</button>
-    <button @onclick=@(_ => setWorkValue(10))>10 Stunden</button>
-</div>
 
-<button @onclick=@(_ => calculateTime(workValue, pauseValue))> Berrechne Zeit </button>
-
+<button class="btn btn-primary" data-toggle="button" @onclick=@(_ => calculateTime(workValue, pauseValue))> Berrechne Zeit </button>
 <div class="ActualTime">
     <div class="StartDate">
         <input type="time" @bind="starttime"/>
@@ -26,13 +46,6 @@
     <div class="EndDate">
         <input type="time" @bind="endtime"/>
     </div>
-
-
-    <label>Starttime Value</label>
-    <label>@starttime</label>
-    <label>Pause @pauseValue</label>
-    <label>Work @workValue</label>
-    <label>Time @time</label>
 </div>
 
 @code
@@ -44,6 +57,7 @@
     TimeSpan resultTime;
     DateTime time;
 
+
     private void setPauseValue(int val)
     {
         pauseValue = new TimeSpan(0, val, 0);
@@ -54,19 +68,12 @@
     private void setWorkValue(int val)
     {
         workValue = new TimeSpan(val, 0, 0);
-        ;
-        StateHasChanged();
-    }
-
-    void setStartTime(DateTime time)
-    {
-        starttime = time;
         StateHasChanged();
     }
 
     void calculateTime(TimeSpan hours, TimeSpan minutes)
     {
-        time = starttime + DateTime.Today.TimeOfDay + hours + minutes;
+        endtime = starttime + DateTime.Today.TimeOfDay + hours + minutes;
         StateHasChanged();
     }
 }
