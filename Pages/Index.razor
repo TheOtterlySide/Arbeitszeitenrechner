@@ -8,44 +8,53 @@
         <h1>Pausen</h1>
     </div>
     <div class="col-lg-6">
-         <h1>Arbeitszeit</h1>
+        <h1>Arbeitszeit</h1>
     </div>
     <div class="row">
         <div class="btn-group btn-group-toggle col-lg-6">
             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" @onclick=@(_ => setPauseValue(0))>
-                    <label class="btn btn-outline-primary" for="btnradio1">0 Minuten</label>
-            
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" @onclick=@(_ => setPauseValue(30))>
-                    <label class="btn btn-outline-primary" for="btnradio2">30</label>
-            
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" @onclick=@(_ => setPauseValue(45))>
-                    <label class="btn btn-outline-primary" for="btnradio3">45</label>
-        </div>
-         <div class="btn-group btn-group-toggle col-lg-6" data-toggle="buttons">
-               
-                <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work1" autocomplete="off" @onclick=@(_ => setWorkValue(6))>
-                <label class="btn btn-outline-primary" for="btn-radio_Work1">0 Minuten</label>
-        
-                <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work2" autocomplete="off" @onclick=@(_ => setWorkValue(8))>
-                <label class="btn btn-outline-primary" for="btn-radio_Work2">30</label>
-        
-                <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work3" autocomplete="off" @onclick=@(_ => setWorkValue(10))>
-                <label class="btn btn-outline-primary" for="btn-radio_Work3">45</label>
-            </div>
-    </div>
+            <label class="btn btn-outline-primary" for="btnradio1">0 Minuten</label>
 
-   
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" @onclick=@(_ => setPauseValue(30))>
+            <label class="btn btn-outline-primary" for="btnradio2">30 Minuten</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" @onclick=@(_ => setPauseValue(45))>
+            <label class="btn btn-outline-primary" for="btnradio3">45 Minuten</label>
+        </div>
+        <div class="btn-group btn-group-toggle col-lg-6" data-toggle="buttons">
+
+            <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work1" autocomplete="off" @onclick=@(_ => setWorkValue(6))>
+            <label class="btn btn-outline-primary" for="btn-radio_Work1">6 Stunden</label>
+
+            <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work2" autocomplete="off" @onclick=@(_ => setWorkValue(8))>
+            <label class="btn btn-outline-primary" for="btn-radio_Work2">8 Stunden</label>
+
+            <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work3" autocomplete="off" @onclick=@(_ => setWorkValue(10))>
+            <label class="btn btn-outline-primary" for="btn-radio_Work3">10 Stunden</label>
+        </div>
+    </div>
 </div>
 
 
-<button class="btn btn-primary" data-toggle="button" @onclick=@(_ => calculateTime(workValue, pauseValue))> Berrechne Zeit </button>
-<div class="ActualTime">
-    <div class="StartDate">
-        <input type="time" @bind="starttime"/>
+<div class="ActualTime row">
+    <div class="StartDate col-lg-6">
+        <h1>Starttime</h1>
     </div>
-    <div class="EndDate">
-        <input type="time" @bind="endtime"/>
+    <div class="col-lg-6">
+        <div>
+        <h1>Endtime</h1>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <input type="time" @bind="starttime"/>
+        </div>
+        <div class="col-lg-6">
+            <h1>@endtime.TimeOfDay</h1>
+        </div>
+    </div>
+    <button class="btn btn-primary" data-toggle="button" @onclick=@(_ => calculateTime(workValue, pauseValue))> Berrechne Zeit </button>
+
 </div>
 
 @code
