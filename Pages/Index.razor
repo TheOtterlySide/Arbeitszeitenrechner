@@ -5,7 +5,7 @@
 <div class="row">
 
     <div class="col-lg-6" data-toggle="buttons">
-        <h1>Pausen</h1>
+        <h1>Pausenzeit</h1>
     </div>
     <div class="col-lg-6">
         <h1>Arbeitszeit</h1>
@@ -35,22 +35,23 @@
     </div>
 </div>
 
+<br/>
 
 <div class="ActualTime row">
     <div class="StartDate col-lg-6">
-        <h1>Starttime</h1>
+        <h1>Arbeitsbeginn</h1>
     </div>
     <div class="col-lg-6">
         <div>
-        <h1>Endtime</h1>
+        <h1>Arbeitsende</h1>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-lg-6">
-            <input type="time" @bind="starttime"/>
+            <input class="form-control" type="time" @bind="starttime"/>
         </div>
         <div class="col-lg-6">
-            <h1>@endtime.TimeOfDay</h1>
+            <h3 class="form-control">@endtime.TimeOfDay</h3>
         </div>
     </div>
     <button class="btn btn-primary" data-toggle="button" @onclick=@(_ => calculateTime(workValue, pauseValue))> Berrechne Zeit </button>
