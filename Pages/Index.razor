@@ -1,61 +1,93 @@
 ﻿@page "/"
+@using System.Timers
+@implements IDisposable
 
 <PageTitle>Index</PageTitle>
 
-<div class="row">
+<div class="table-responsive">
+    <table class="table table-borderless">
+        <thead>
+        <tr>
+            <th class="col-lg-6">
+                <div>
+                    <h1>Pausenzeit</h1>
+                </div>
+            </th>
+            <th class="col-lg-6">
+                <div>
+                    <h1>Arbeitszeit</h1>
+                </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th class="col-lg-6">
+                <div class="btn-group btn-group-toggle col-lg-12" data-toggle="buttons">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" @onclick=@(_ => setPauseValue(0))>
+                    <label class="btn btn-outline-primary" for="btnradio1">0 Minuten</label>
 
-    <div class="col-lg-6" data-toggle="buttons">
-        <h1>Pausenzeit</h1>
-    </div>
-    <div class="col-lg-6">
-        <h1>Arbeitszeit</h1>
-    </div>
-    <div class="row">
-        <div class="btn-group btn-group-toggle col-lg-6">
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" @onclick=@(_ => setPauseValue(0))>
-            <label class="btn btn-outline-primary" for="btnradio1">0 Minuten</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" @onclick=@(_ => setPauseValue(30))>
+                    <label class="btn btn-outline-primary" for="btnradio2">30 Minuten</label>
 
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" @onclick=@(_ => setPauseValue(30))>
-            <label class="btn btn-outline-primary" for="btnradio2">30 Minuten</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" @onclick=@(_ => setPauseValue(45))>
+                    <label class="btn btn-outline-primary" for="btnradio3">45 Minuten</label>
+                </div>
+            </th>
+            <th class="col-lg-6">
+                <div class="btn-group btn-group-toggle col-lg-12" data-toggle="buttons">
 
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" @onclick=@(_ => setPauseValue(45))>
-            <label class="btn btn-outline-primary" for="btnradio3">45 Minuten</label>
-        </div>
-        <div class="btn-group btn-group-toggle col-lg-6" data-toggle="buttons">
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work1" autocomplete="off" @onclick=@(_ => setWorkValue(6))>
+                    <label class="btn btn-outline-primary" for="btn-radio_Work1">6 Stunden</label>
 
-            <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work1" autocomplete="off" @onclick=@(_ => setWorkValue(6))>
-            <label class="btn btn-outline-primary" for="btn-radio_Work1">6 Stunden</label>
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work2" autocomplete="off" @onclick=@(_ => setWorkValue(8))>
+                    <label class="btn btn-outline-primary" for="btn-radio_Work2">8 Stunden</label>
 
-            <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work2" autocomplete="off" @onclick=@(_ => setWorkValue(8))>
-            <label class="btn btn-outline-primary" for="btn-radio_Work2">8 Stunden</label>
-
-            <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work3" autocomplete="off" @onclick=@(_ => setWorkValue(10))>
-            <label class="btn btn-outline-primary" for="btn-radio_Work3">10 Stunden</label>
-        </div>
-    </div>
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work3" autocomplete="off" @onclick=@(_ => setWorkValue(10))>
+                    <label class="btn btn-outline-primary" for="btn-radio_Work3">10 Stunden</label>
+                </div>
+            </th>
+        </tr>
+        </tbody>
+    </table>
 </div>
-
 <br/>
 
-<div class="ActualTime row">
-    <div class="StartDate col-lg-6">
-        <h1>Arbeitsbeginn</h1>
-    </div>
-    <div class="col-lg-6">
-        <div>
-        <h1>Arbeitsende</h1>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="col-lg-6">
-            <input class="form-control" type="time" @bind="starttime"/>
-        </div>
-        <div class="col-lg-6">
-            <h3 class="form-control">@endtime.TimeOfDay</h3>
-        </div>
-    </div>
-    <button class="btn btn-primary" data-toggle="button" @onclick=@(_ => calculateTime(workValue, pauseValue))> Berrechne Zeit </button>
+<div class="table-responsive">
+    <table class="table table-borderless">
+        <thead>
+        <tr>
+            <th class="col-lg-6">
+                <h1>Arbeitsbeginn</h1>
+            </th>
+            <th class="col-lg-6">
+                <h1>Arbeitsende</h1>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th class="col-lg-6">
+                <div class="col-lg-12">
+                    <input class="form-control" type="time" @bind="starttime"/>
+                </div>
+            </th>
+            <th class="col-lg-6">
+                <div class="col-lg-12">
+                    <h3 class="form-control">@endtime.TimeOfDay</h3>
+                </div>
+            </th>
+        </tr>
+        </tbody>
+    </table>
 
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <h1>Countdown</h1>
+    </div>
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <h3>@timeleft</h3>
+    </div>
+    <button class="btn btn-primary col-lg-12" data-toggle="button" @onclick=@(_ => calculateTime(workValue, pauseValue))> Berrechne Zeit </button>
 </div>
 
 @code
@@ -66,7 +98,25 @@
     DateTime endtime;
     TimeSpan resultTime;
     DateTime time;
+    private Timer? secondsTimer;
 
+    TimeSpan timeleft;
+
+    async Task Timer()
+    {
+        timeleft = pauseValue + workValue;
+        while (timeleft > new TimeSpan())
+        {
+            await Task.Delay(1000);
+            timeleft = timeleft.Subtract(new TimeSpan(0, 0, 1));
+            StateHasChanged();
+        }
+    }
+
+    public void Dispose()
+    {
+        secondsTimer?.Dispose();
+    }
 
     private void setPauseValue(int val)
     {
@@ -84,6 +134,7 @@
     void calculateTime(TimeSpan hours, TimeSpan minutes)
     {
         endtime = starttime + DateTime.Today.TimeOfDay + hours + minutes;
+        Timer();
         StateHasChanged();
     }
 }
