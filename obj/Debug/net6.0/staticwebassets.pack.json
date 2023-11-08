@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets/Arbeitszeitenrechner.styles.css"
     },
     {
+      "Id": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/2.ico",
+      "PackagePath": "staticwebassets/2.ico"
+    },
+    {
       "Id": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/css/app.css",
       "PackagePath": "staticwebassets/css/app.css"
     },
@@ -63,10 +67,6 @@
     {
       "Id": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
-    },
-    {
-      "Id": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/favicon.png",
-      "PackagePath": "staticwebassets/favicon.png"
     },
     {
       "Id": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/icon-192.png",

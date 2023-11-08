@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nniM1eHlWnfRniV8jeOckAFFpFeyTr7m6clYQ3JpuRE=",
+  "Hash": "9RDneL28Gbcp42mcyU/7SDXF5EcIj2rJVL7smM6nRQs=",
   "Source": "Arbeitszeitenrechner",
   "BasePath": "/",
   "Mode": "Root",
@@ -6868,6 +6868,23 @@
       "OriginalItemSpec": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net6.0/scopedcss/projectbundle/Arbeitszeitenrechner.bundle.scp.css"
     },
     {
+      "Identity": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/2.ico",
+      "SourceId": "Arbeitszeitenrechner",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "2.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/2.ico"
+    },
+    {
       "Identity": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/css/app.css",
       "SourceId": "Arbeitszeitenrechner",
       "SourceType": "Discovered",
@@ -7087,23 +7104,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
-    },
-    {
-      "Identity": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/favicon.png",
-      "SourceId": "Arbeitszeitenrechner",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "favicon.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/favicon.png"
     },
     {
       "Identity": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/icon-192.png",
