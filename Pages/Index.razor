@@ -74,7 +74,7 @@
             </th>
             <th class="col-lg-6">
                 <div class="col-lg-12">
-                    <h3 class="form-control">@endtime.TimeOfDay</h3>
+                    <h3 class="form-control">@endtimeString</h3>
                 </div>
             </th>
         </tr>
@@ -85,7 +85,7 @@
         <h1>Countdown</h1>
     </div>
     <div class="h-100 d-flex align-items-center justify-content-center">
-        <h3>@timeleft</h3>
+        <h3>@timeleftAsString</h3>
     </div>
     <button class="btn btn-primary col-lg-12" data-toggle="button" @onclick=@(_ => calculateTime(workValue, pauseValue))> Berechne Zeit </button>
 </div>
@@ -96,19 +96,23 @@
     TimeSpan workValue = new TimeSpan(8,0,0);
     DateTime starttime;
     DateTime endtime;
+    string endtimeString = "00:00";
     TimeSpan resultTime;
     DateTime time;
     private Timer? secondsTimer;
 
     TimeSpan timeleft;
+    string timeleftAsString ="00:00";
 
     async Task Timer()
     {
-        timeleft = pauseValue + workValue;
+        timeleft = endtime.Subtract(DateTime.Now);
+        
         while (timeleft > new TimeSpan())
         {
             await Task.Delay(1000);
             timeleft = timeleft.Subtract(new TimeSpan(0, 0, 1));
+            timeleftAsString = timeleft.ToString("hh':'mm':'ss");
             StateHasChanged();
         }
     }
@@ -134,6 +138,7 @@
     void calculateTime(TimeSpan hours, TimeSpan minutes)
     {
         endtime = starttime + DateTime.Today.TimeOfDay + hours + minutes;
+        endtimeString = endtime.ToString("HH:mm");
         Timer();
         StateHasChanged();
     }
