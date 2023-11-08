@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XHFPyaRKX3tcVP6xLH8+OBZqY+i8wL5EIZD9gnk0tXM=",
+  "Hash": "nniM1eHlWnfRniV8jeOckAFFpFeyTr7m6clYQ3JpuRE=",
   "Source": "Arbeitszeitenrechner",
   "BasePath": "/",
   "Mode": "Root",
@@ -7087,6 +7087,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/favicon.png",
+      "SourceId": "Arbeitszeitenrechner",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "favicon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/favicon.png"
     },
     {
       "Identity": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/icon-192.png",

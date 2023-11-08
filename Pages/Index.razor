@@ -2,7 +2,7 @@
 @using System.Timers
 @implements IDisposable
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Arbeitszeitenrechner</PageTitle>
 
 <div class="table-responsive">
     <table class="table table-borderless">
@@ -27,7 +27,7 @@
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" @onclick=@(_ => setPauseValue(0))>
                     <label class="btn btn-outline-primary" for="btnradio1">0 Minuten</label>
 
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" @onclick=@(_ => setPauseValue(30))>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked @onclick=@(_ => setPauseValue(30))>
                     <label class="btn btn-outline-primary" for="btnradio2">30 Minuten</label>
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" @onclick=@(_ => setPauseValue(45))>
@@ -40,7 +40,7 @@
                     <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work1" autocomplete="off" @onclick=@(_ => setWorkValue(6))>
                     <label class="btn btn-outline-primary" for="btn-radio_Work1">6 Stunden</label>
 
-                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work2" autocomplete="off" @onclick=@(_ => setWorkValue(8))>
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work2" autocomplete="off" checked @onclick=@(_ => setWorkValue(8))>
                     <label class="btn btn-outline-primary" for="btn-radio_Work2">8 Stunden</label>
 
                     <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work3" autocomplete="off" @onclick=@(_ => setWorkValue(10))>
@@ -87,13 +87,13 @@
     <div class="h-100 d-flex align-items-center justify-content-center">
         <h3>@timeleft</h3>
     </div>
-    <button class="btn btn-primary col-lg-12" data-toggle="button" @onclick=@(_ => calculateTime(workValue, pauseValue))> Berrechne Zeit </button>
+    <button class="btn btn-primary col-lg-12" data-toggle="button" @onclick=@(_ => calculateTime(workValue, pauseValue))> Berechne Zeit </button>
 </div>
 
 @code
 {
-    TimeSpan pauseValue;
-    TimeSpan workValue;
+    TimeSpan pauseValue = new TimeSpan(0,30,0);
+    TimeSpan workValue = new TimeSpan(8,0,0);
     DateTime starttime;
     DateTime endtime;
     TimeSpan resultTime;

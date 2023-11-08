@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
       "Id": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/icon-192.png",
       "PackagePath": "staticwebassets/icon-192.png"
     },
