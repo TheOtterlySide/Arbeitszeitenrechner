@@ -24,27 +24,56 @@
         <tr>
             <th class="col-lg-6">
                 <div class="btn-group btn-group-toggle col-lg-12" data-toggle="buttons">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" @onclick=@(_ => setPauseValue(0))>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" @onclick=@(_ => setPauseValue(0, null))>
                     <label class="btn btn-outline-primary" for="btnradio1">0 Minuten</label>
 
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked @onclick=@(_ => setPauseValue(30))>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked @onclick=@(_ => setPauseValue(30, null))>
                     <label class="btn btn-outline-primary" for="btnradio2">30 Minuten</label>
 
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" @onclick=@(_ => setPauseValue(45))>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" @onclick=@(_ => setPauseValue(45, null))>
                     <label class="btn btn-outline-primary" for="btnradio3">45 Minuten</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" @onclick=@(_ => setCustomValueActive(0))>
+                    <label class="btn btn-outline-primary" for="btnradio4">Custom</label>
+
+                    @if (showCustomPause)
+                    {
+                        <tr>
+                            <th scope="row"></th>
+                            <td>
+                                <input type="number" class="form-control mx-2" @bind="customPauseValue"/>
+                            </td>
+                        </tr>
+                    }
                 </div>
             </th>
             <th class="col-lg-6">
                 <div class="btn-group btn-group-toggle col-lg-12" data-toggle="buttons">
 
-                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work1" autocomplete="off" @onclick=@(_ => setWorkValue(6))>
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work1" autocomplete="off" @onclick=@(_ => setWorkValue(6, null))>
                     <label class="btn btn-outline-primary" for="btn-radio_Work1">6 Stunden</label>
 
-                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work2" autocomplete="off" checked @onclick=@(_ => setWorkValue(8))>
-                    <label class="btn btn-outline-primary" for="btn-radio_Work2">8 Stunden</label>
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work2" autocomplete="off" @onclick=@(_ => setWorkValue(7, null))>
+                    <label class="btn btn-outline-primary" for="btn-radio_Work2">7 Stunden</label>
 
-                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work3" autocomplete="off" @onclick=@(_ => setWorkValue(10))>
-                    <label class="btn btn-outline-primary" for="btn-radio_Work3">10 Stunden</label>
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work3" autocomplete="off" checked @onclick=@(_ => setWorkValue(8, null))>
+                    <label class="btn btn-outline-primary" for="btn-radio_Work3">8 Stunden</label>
+
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work4" autocomplete="off" @onclick=@(_ => setWorkValue(10, null))>
+                    <label class="btn btn-outline-primary" for="btn-radio_Work4">10 Stunden</label>
+
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work5" autocomplete="off" @onclick=@(_ => setCustomValueActive(1))>
+                    <label class="btn btn-outline-primary" for="btn-radio_Work5">Custom</label>
+
+                    @if (showCustomWork)
+                    {
+                        <tr>
+                            <th scope="row"></th>
+                            <td>
+                                <input type="number" class="form-control mx-2" @bind="customWorkValue"/>
+                            </td>
+                        </tr>
+                    }
                 </div>
             </th>
         </tr>
@@ -92,8 +121,8 @@
 
 @code
 {
-    TimeSpan pauseValue = new TimeSpan(0,30,0);
-    TimeSpan workValue = new TimeSpan(8,0,0);
+    TimeSpan pauseValue = new TimeSpan(0, 30, 0);
+    TimeSpan workValue = new TimeSpan(8, 0, 0);
     DateTime starttime;
     DateTime endtime;
     string endtimeString = "00:00";
@@ -102,12 +131,17 @@
     private Timer? secondsTimer;
 
     TimeSpan timeleft;
-    string timeleftAsString ="00:00";
+    string timeleftAsString = "00:00";
+
+    bool showCustomPause = false;
+    bool showCustomWork = false;
+    int customPauseValue;
+    int customWorkValue;
 
     async Task Timer()
     {
         timeleft = endtime.Subtract(DateTime.Now);
-        
+
         while (timeleft > new TimeSpan())
         {
             await Task.Delay(1000);
@@ -122,21 +156,45 @@
         secondsTimer?.Dispose();
     }
 
-    private void setPauseValue(int val)
+    private void setPauseValue(int val, int? id)
     {
+        if (id != null) return;
+        showCustomPause = false;
         pauseValue = new TimeSpan(0, val, 0);
         StateHasChanged();
     }
 
 
-    private void setWorkValue(int val)
+    private void setWorkValue(int val, int? id)
     {
+        if (id != null) return;
+        showCustomWork = false;
         workValue = new TimeSpan(val, 0, 0);
         StateHasChanged();
     }
 
+    private void setCustomValueActive(int id)
+    {
+        if (id == 0)
+        {
+    //Show Custom Pause Input
+            showCustomPause = !showCustomPause;
+            StateHasChanged();
+        }
+        else
+        {
+            showCustomWork = !showCustomWork;
+            StateHasChanged();
+        }
+    }
+
     void calculateTime(TimeSpan hours, TimeSpan minutes)
     {
+        if (showCustomWork || showCustomPause)
+        {
+            hours = new TimeSpan(customWorkValue, hours.Minutes, 0);
+            minutes = new TimeSpan(0, customPauseValue, 0);
+        }
         endtime = starttime + DateTime.Today.TimeOfDay + hours + minutes;
         endtimeString = endtime.ToString("HH:mm");
         Timer();
