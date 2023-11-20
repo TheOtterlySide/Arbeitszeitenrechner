@@ -116,6 +116,12 @@
     <div class="h-100 d-flex align-items-center justify-content-center">
         <h3>@timeleftAsString</h3>
     </div>
+    @if (needPause)
+    {
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <h3>Bis wann Pause gemacht werden muss: @needPauseValue</h3>
+        </div>
+    }
     <button class="btn btn-primary col-lg-12" data-toggle="button" @onclick=@(_ => calculateTime(workValue, pauseValue))> Berechne Zeit </button>
 </div>
 
@@ -129,6 +135,11 @@
     TimeSpan resultTime;
     DateTime time;
     private Timer? secondsTimer;
+
+    TimeSpan mustPause = new TimeSpan(hours: 6, 0, 0);
+    DateTime whenPause = new DateTime();
+    string needPauseValue;
+    bool needPause;
 
     TimeSpan timeleft;
     string timeleftAsString = "00:00";
@@ -195,7 +206,16 @@
             hours = new TimeSpan(customWorkValue, hours.Minutes, 0);
             minutes = new TimeSpan(0, customPauseValue, 0);
         }
+        
         endtime = starttime + DateTime.Today.TimeOfDay + hours + minutes;
+        whenPause = starttime + mustPause;
+        
+        if (workValue > new TimeSpan(6,0,0))
+        {
+            needPause = true;
+            needPauseValue = whenPause.ToString("HH:mm");
+        }
+        
         endtimeString = endtime.ToString("HH:mm");
         Timer();
         StateHasChanged();
