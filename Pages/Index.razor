@@ -1,6 +1,4 @@
 ﻿@page "/"
-@using System.Timers
-@implements IDisposable
 
 <PageTitle>Arbeitszeitenrechner</PageTitle>
 
@@ -24,16 +22,16 @@
         <tr>
             <th class="col-lg-6">
                 <div class="btn-group btn-group-toggle col-lg-12" data-toggle="buttons">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" @onclick=@(_ => setPauseValue(0, null))>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" checked=@(IsCheckedPause(0)) autocomplete="off" @onclick=@(_ => setPauseValue(0, null))>
                     <label class="btn btn-outline-primary" for="btnradio1">0 Minuten</label>
 
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked @onclick=@(_ => setPauseValue(30, null))>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked=@(IsCheckedPause(30)) @onclick=@(_ => setPauseValue(30, null))>
                     <label class="btn btn-outline-primary" for="btnradio2">30 Minuten</label>
 
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" @onclick=@(_ => setPauseValue(45, null))>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked=@(IsCheckedPause(45)) @onclick=@(_ => setPauseValue(45, null))>
                     <label class="btn btn-outline-primary" for="btnradio3">45 Minuten</label>
 
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" @onclick=@(_ => setCustomValueActive(0))>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"  @onclick=@(_ => setCustomValueActive(0))>
                     <label class="btn btn-outline-primary" for="btnradio4">Custom</label>
 
                     @if (showCustomPause)
@@ -127,44 +125,50 @@
 
 @code
 {
-    TimeSpan pauseValue = new TimeSpan(0, 30, 0);
-    TimeSpan workValue = new TimeSpan(8, 0, 0);
-    DateTime starttime;
-    DateTime endtime;
-    string endtimeString = "00:00";
-    TimeSpan resultTime;
-    DateTime time;
-    private Timer? secondsTimer;
+    #region Timespan
+        TimeSpan pauseValue = new TimeSpan(0, 30, 0);
+        TimeSpan workValue = new TimeSpan(8, 0, 0);
+        TimeSpan resultTime;
+        TimeSpan mustPause = new TimeSpan(hours: 6, 0, 0);
+        static TimeSpan timeleft;
+    #endregion
 
-    TimeSpan mustPause = new TimeSpan(hours: 6, 0, 0);
-    DateTime whenPause = new DateTime();
+    #region DateTime
+        DateTime starttime;
+        DateTime endtime;
+        DateTime time;
+        DateTime whenPause = new DateTime();
+    #endregion
+
+    string endtimeString = "00:00";
     string needPauseValue;
     bool needPause;
-
-    TimeSpan timeleft;
-    string timeleftAsString = "00:00";
+    static string timeleftAsString = "00:00";
 
     bool showCustomPause = false;
     bool showCustomWork = false;
     int customPauseValue;
     int customWorkValue;
 
-    async Task Timer()
+    bool timeAlive;
+    Task t = null;
+
+    async Task Timer(CancellationToken ct)
     {
         timeleft = endtime.Subtract(DateTime.Now);
+        timeleftAsString = string.Empty;
+        var sec = new TimeSpan(0, 0, 1);
 
-        while (timeleft > new TimeSpan())
+        while (timeleft > new TimeSpan() && timeAlive)
         {
             await Task.Delay(1000);
-            timeleft = timeleft.Subtract(new TimeSpan(0, 0, 1));
+            timeleft = timeleft.Subtract(sec);
             timeleftAsString = timeleft.ToString("hh':'mm':'ss");
+            ct.ThrowIfCancellationRequested();
             StateHasChanged();
         }
-    }
 
-    public void Dispose()
-    {
-        secondsTimer?.Dispose();
+        timeleftAsString = "Schönen Feierabend";
     }
 
     private void setPauseValue(int val, int? id)
@@ -181,6 +185,10 @@
         if (id != null) return;
         showCustomWork = false;
         workValue = new TimeSpan(val, 0, 0);
+        if (val >= 9)
+        {
+            setPauseValue(45, null );
+        }
         StateHasChanged();
     }
 
@@ -201,23 +209,42 @@
 
     void calculateTime(TimeSpan hours, TimeSpan minutes)
     {
+        CancellationTokenSource cts = new();
         if (showCustomWork || showCustomPause)
         {
             hours = new TimeSpan(customWorkValue, hours.Minutes, 0);
             minutes = new TimeSpan(0, customPauseValue, 0);
         }
-        
+
         endtime = starttime + DateTime.Today.TimeOfDay + hours + minutes;
         whenPause = starttime + mustPause;
-        
-        if (workValue > new TimeSpan(6,0,0))
+
+        if (workValue > new TimeSpan(6, 0, 0))
         {
             needPause = true;
             needPauseValue = whenPause.ToString("HH:mm");
         }
-        
+
         endtimeString = endtime.ToString("HH:mm");
-        Timer();
+
+        if (t == null || t.Status.Equals(TaskStatus.Running))
+        {
+            timeAlive = true;
+            t = Timer(cts.Token);
+        }
+        else
+        {
+            cts.Cancel();
+            cts.TryReset();
+            timeAlive = true;
+            Timer(cts.Token);
+        }
         StateHasChanged();
+    }
+
+    private bool IsCheckedPause(int value)
+    {
+        var result = pauseValue.Minutes == value;
+        return result;
     }
 }
