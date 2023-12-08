@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9RDneL28Gbcp42mcyU/7SDXF5EcIj2rJVL7smM6nRQs=",
+  "Hash": "0Uk5YkDX5Sn4LMj1Tm9caFrMDrnvT8ex6wpTEyk9ELY=",
   "Source": "Arbeitszeitenrechner",
   "BasePath": "/",
   "Mode": "Root",
@@ -7155,6 +7155,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/sample-data/weather.json"
+    },
+    {
+      "Identity": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/scripts/main.js",
+      "SourceId": "Arbeitszeitenrechner",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "scripts/main.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/scripts/main.js"
     }
   ]
 }

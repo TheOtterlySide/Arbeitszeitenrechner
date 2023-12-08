@@ -81,6 +81,10 @@
       "PackagePath": "staticwebassets/sample-data/weather.json"
     },
     {
+      "Id": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/wwwroot/scripts/main.js",
+      "PackagePath": "staticwebassets/scripts/main.js"
+    },
+    {
       "Id": "obj/Debug/net6.0/staticwebassets/msbuild.Arbeitszeitenrechner.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

@@ -1,5 +1,7 @@
 ﻿@page "/"
+@inject IJSRuntime JsRuntime;
 
+<!--suppress ALL -->
 <PageTitle>Arbeitszeitenrechner</PageTitle>
 
 <div class="table-responsive">
@@ -22,16 +24,16 @@
         <tr>
             <th class="col-lg-6">
                 <div class="btn-group btn-group-toggle col-lg-12" data-toggle="buttons">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" checked=@(IsCheckedPause(0)) autocomplete="off" @onclick=@(_ => setPauseValue(0, null))>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" checked=@(IsCheckedPause(0)) autocomplete="off" @onclick=@(_ => SetPauseValue(0, null))>
                     <label class="btn btn-outline-primary" for="btnradio1">0 Minuten</label>
 
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked=@(IsCheckedPause(30)) @onclick=@(_ => setPauseValue(30, null))>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked=@(IsCheckedPause(30)) @onclick=@(_ => SetPauseValue(30, null))>
                     <label class="btn btn-outline-primary" for="btnradio2">30 Minuten</label>
 
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked=@(IsCheckedPause(45)) @onclick=@(_ => setPauseValue(45, null))>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked=@(IsCheckedPause(45)) @onclick=@(_ => SetPauseValue(45, null))>
                     <label class="btn btn-outline-primary" for="btnradio3">45 Minuten</label>
 
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"  @onclick=@(_ => setCustomValueActive(0))>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" @onclick=@(_ => SetCustomValueActive(0))>
                     <label class="btn btn-outline-primary" for="btnradio4">Custom</label>
 
                     @if (showCustomPause)
@@ -48,19 +50,19 @@
             <th class="col-lg-6">
                 <div class="btn-group btn-group-toggle col-lg-12" data-toggle="buttons">
 
-                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work1" autocomplete="off" @onclick=@(_ => setWorkValue(6, null))>
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work1" autocomplete="off" @onclick=@(_ => SetWorkValue(6, null))>
                     <label class="btn btn-outline-primary" for="btn-radio_Work1">6 Stunden</label>
 
-                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work2" autocomplete="off" @onclick=@(_ => setWorkValue(7, null))>
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work2" autocomplete="off" @onclick=@(_ => SetWorkValue(7, null))>
                     <label class="btn btn-outline-primary" for="btn-radio_Work2">7 Stunden</label>
 
-                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work3" autocomplete="off" checked @onclick=@(_ => setWorkValue(8, null))>
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work3" autocomplete="off" checked @onclick=@(_ => SetWorkValue(8, null))>
                     <label class="btn btn-outline-primary" for="btn-radio_Work3">8 Stunden</label>
 
-                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work4" autocomplete="off" @onclick=@(_ => setWorkValue(10, null))>
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work4" autocomplete="off" @onclick=@(_ => SetWorkValue(10, null))>
                     <label class="btn btn-outline-primary" for="btn-radio_Work4">10 Stunden</label>
 
-                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work5" autocomplete="off" @onclick=@(_ => setCustomValueActive(1))>
+                    <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work5" autocomplete="off" @onclick=@(_ => SetCustomValueActive(1))>
                     <label class="btn btn-outline-primary" for="btn-radio_Work5">Custom</label>
 
                     @if (showCustomWork)
@@ -114,36 +116,41 @@
     <div class="h-100 d-flex align-items-center justify-content-center">
         <h3>@timeleftAsString</h3>
     </div>
+
     @if (needPause)
     {
         <div class="h-100 d-flex align-items-center justify-content-center">
             <h3>Bis wann Pause gemacht werden muss: @needPauseValue</h3>
         </div>
     }
-    <button class="btn btn-primary col-lg-12" data-toggle="button" @onclick=@(_ => calculateTime(workValue, pauseValue))> Berechne Zeit </button>
+    <button class="btn btn-primary col-lg-12" data-toggle="button" @onclick=@(_ => CalculateTime(workValue, pauseValue))> Berechne Zeit </button>
 </div>
 
 @code
 {
     #region Timespan
-        TimeSpan pauseValue = new TimeSpan(0, 30, 0);
-        TimeSpan workValue = new TimeSpan(8, 0, 0);
-        TimeSpan resultTime;
-        TimeSpan mustPause = new TimeSpan(hours: 6, 0, 0);
-        static TimeSpan timeleft;
+
+    TimeSpan pauseValue = new TimeSpan(0, 30, 0);
+    TimeSpan workValue = new TimeSpan(8, 0, 0);
+    TimeSpan resultTime;
+    TimeSpan mustPause = new TimeSpan(hours: 6, 0, 0);
+    static TimeSpan timeleft;
+
     #endregion
 
     #region DateTime
-        DateTime starttime;
-        DateTime endtime;
-        DateTime time;
-        DateTime whenPause = new DateTime();
+
+    DateTime starttime;
+    DateTime endtime;
+    DateTime time;
+    DateTime whenPause = new DateTime();
+
     #endregion
 
     string endtimeString = "00:00";
     string needPauseValue;
     bool needPause;
-    static string timeleftAsString = "00:00";
+    static string timeleftAsString = string.Empty;
 
     bool showCustomPause = false;
     bool showCustomWork = false;
@@ -151,7 +158,30 @@
     int customWorkValue;
 
     bool timeAlive;
-    Task t = null;
+    Task timeTask = null;
+
+    static bool isActive;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var lDotNetReference = DotNetObjectReference.Create(this);
+        await JsRuntime.InvokeVoidAsync("GLOBAL.SetDotnetReference", lDotNetReference);
+        await JsRuntime.InvokeVoidAsync("isVisible");
+        StateHasChanged();
+    }
+
+    [JSInvokable("setTabActive")]
+    public void SetActive(bool status)
+    {
+        isActive = status;
+        if (isActive && timeleftAsString != string.Empty)
+        {
+            CalculateTime(workValue, pauseValue);
+        }
+        StateHasChanged();
+    }
+
 
     async Task Timer(CancellationToken ct)
     {
@@ -171,7 +201,7 @@
         timeleftAsString = "Schönen Feierabend";
     }
 
-    private void setPauseValue(int val, int? id)
+    private void SetPauseValue(int val, int? id)
     {
         if (id != null) return;
         showCustomPause = false;
@@ -180,19 +210,21 @@
     }
 
 
-    private void setWorkValue(int val, int? id)
+    private void SetWorkValue(int val, int? id)
     {
         if (id != null) return;
         showCustomWork = false;
         workValue = new TimeSpan(val, 0, 0);
+
         if (val >= 9)
         {
-            setPauseValue(45, null );
+            SetPauseValue(45, null);
         }
+
         StateHasChanged();
     }
 
-    private void setCustomValueActive(int id)
+    private void SetCustomValueActive(int id)
     {
         if (id == 0)
         {
@@ -207,7 +239,7 @@
         }
     }
 
-    void calculateTime(TimeSpan hours, TimeSpan minutes)
+    void CalculateTime(TimeSpan hours, TimeSpan minutes)
     {
         CancellationTokenSource cts = new();
         if (showCustomWork || showCustomPause)
@@ -227,10 +259,10 @@
 
         endtimeString = endtime.ToString("HH:mm");
 
-        if (t == null || t.Status.Equals(TaskStatus.Running))
+        if (timeTask == null || timeTask.Status.Equals(TaskStatus.Running))
         {
             timeAlive = true;
-            t = Timer(cts.Token);
+            timeTask = Timer(cts.Token);
         }
         else
         {
