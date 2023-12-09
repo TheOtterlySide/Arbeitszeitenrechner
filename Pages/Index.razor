@@ -157,8 +157,7 @@
     int customPauseValue;
     int customWorkValue;
 
-    bool timeAlive;
-    Task timeTask = null;
+    Task? timeTask = null;
 
     static bool isActive;
 
@@ -188,8 +187,18 @@
         timeleft = endtime.Subtract(DateTime.Now);
         timeleftAsString = string.Empty;
         var sec = new TimeSpan(0, 0, 1);
-
-        while (timeleft > new TimeSpan() && timeAlive)
+        
+        if (ct.IsCancellationRequested)
+        {
+            timeTask = null;
+            if (timeleft <= new TimeSpan())
+            {
+                timeleftAsString = "Schönen Feierabend";
+            }
+            return;
+        }
+        
+        while (timeleft > new TimeSpan())
         {
             await Task.Delay(1000);
             timeleft = timeleft.Subtract(sec);
@@ -198,7 +207,9 @@
             StateHasChanged();
         }
 
+       
         timeleftAsString = "Schönen Feierabend";
+        StateHasChanged();
     }
 
     private void SetPauseValue(int val, int? id)
@@ -242,6 +253,7 @@
     void CalculateTime(TimeSpan hours, TimeSpan minutes)
     {
         CancellationTokenSource cts = new();
+        
         if (showCustomWork || showCustomPause)
         {
             hours = new TimeSpan(customWorkValue, hours.Minutes, 0);
@@ -259,19 +271,14 @@
 
         endtimeString = endtime.ToString("HH:mm");
 
-        if (timeTask == null || timeTask.Status.Equals(TaskStatus.Running))
-        {
-            timeAlive = true;
-            timeTask = Timer(cts.Token);
-        }
-        else
+        if (timeTask != null)
         {
             cts.Cancel();
-            cts.TryReset();
-            timeAlive = true;
-            Timer(cts.Token);
+            timeTask = Timer(cts.Token);
         }
-        StateHasChanged();
+
+        cts = new CancellationTokenSource();
+        timeTask = Timer(cts.Token);
     }
 
     private bool IsCheckedPause(int value)
