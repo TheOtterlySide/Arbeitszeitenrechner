@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "Arbeitszeitenrechner.dll": "sha256-OCofn36+gHJts0I5PYdAANsffsRdifkqJOQ4VuYZnBc=",
+      "Arbeitszeitenrechner.dll": "sha256-Zb4iKIdJDoDoM7Fp2sepz1XP7FCSJ9g7\/nds8ZBvO1U=",
       "Microsoft.AspNetCore.Components.dll": "sha256-4JKa7H+OFTUXw2tVsBo+ccVhcnDkxIA7+L3MhVf9a2I=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-iQWElrPKgZb5zSrqZdU4Z\/aiY8f9cuDqfRKM12EmMoM=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-tLSQBcWVVv7Wcr7pkoYZDMNuLOg3zolBvsVJ8MvE0Ac=",
@@ -31,7 +31,7 @@
       "System.Memory.dll": "sha256-VZc8FW+6xKvvbNSK3vcqx3jxsYJmso07QjSc5t0sWwU=",
       "System.Net.Http.dll": "sha256-ZIA1zmHgOd7lYDGZxdJoSyT6Qlndkgsd84kiV14ATHY=",
       "System.Net.Primitives.dll": "sha256-ql1aOiIRXSCBStkEK8QW9lCzIgfYm8TDbQxiJLINK50=",
-      "System.Private.CoreLib.dll": "sha256-4b60K2NCxE6gVRFieTl4dZlYapFzkwjA8GA9rFgjC5E=",
+      "System.Private.CoreLib.dll": "sha256-g0nOsPu3+pw635bC+lkrTKFZ3BXby\/GFZY7a5nRDNn8=",
       "System.Private.Runtime.InteropServices.JavaScript.dll": "sha256-Z0nKVaCoEQcUI2HNiy2DLcyHMS2sGNp0l8CKZ2VSfMY=",
       "System.Private.Uri.dll": "sha256-gN0JLocFthQM53aCL6TvCQDQurRLfHdvmv\/8V8fsIyc=",
       "System.Runtime.CompilerServices.Unsafe.dll": "sha256-+XMJnNklnGcICQbnz5zE0PlETCe+p7Ptu41dMa2emoI=",
