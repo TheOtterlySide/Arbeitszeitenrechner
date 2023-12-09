@@ -190,7 +190,6 @@
         
         if (ct.IsCancellationRequested)
         {
-            timeTask = null;
             if (timeleft <= new TimeSpan())
             {
                 timeleftAsString = "Schönen Feierabend";
@@ -274,10 +273,10 @@
         if (timeTask != null)
         {
             cts.Cancel();
+            cts.TryReset();
             timeTask = Timer(cts.Token);
         }
 
-        cts = new CancellationTokenSource();
         timeTask = Timer(cts.Token);
     }
 
