@@ -187,7 +187,7 @@
         timeleft = endtime.Subtract(DateTime.Now);
         timeleftAsString = string.Empty;
         var sec = new TimeSpan(0, 0, 1);
-        
+
         if (ct.IsCancellationRequested)
         {
             if (timeleft <= new TimeSpan())
@@ -196,7 +196,7 @@
             }
             return;
         }
-        
+
         while (timeleft > new TimeSpan())
         {
             await Task.Delay(1000);
@@ -206,7 +206,7 @@
             StateHasChanged();
         }
 
-       
+
         timeleftAsString = "Schönen Feierabend";
         StateHasChanged();
     }
@@ -252,10 +252,14 @@
     void CalculateTime(TimeSpan hours, TimeSpan minutes)
     {
         CancellationTokenSource cts = new();
-        
-        if (showCustomWork || showCustomPause)
+
+        if (showCustomWork)
         {
-            hours = new TimeSpan(customWorkValue, hours.Minutes, 0);
+            hours = new TimeSpan(customWorkValue, 0, 0);
+        }
+
+        if (showCustomPause)
+        {
             minutes = new TimeSpan(0, customPauseValue, 0);
         }
 
