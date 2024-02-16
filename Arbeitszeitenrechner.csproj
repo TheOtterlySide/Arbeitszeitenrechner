@@ -4,12 +4,30 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="BlazorMvc" Version="2.1.1" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.9" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.9" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.2.0" />
+        <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.27" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="LanguageFiles\Pages\Index.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Index.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="LanguageFiles\Pages\Index.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Index.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

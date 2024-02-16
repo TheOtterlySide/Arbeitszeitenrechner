@@ -1,21 +1,40 @@
 ﻿@page "/"
+@using Microsoft.Extensions.Localization
+@using System.Globalization
 @inject IJSRuntime JsRuntime;
+@inject IStringLocalizer<Index> L
 
-<!--suppress ALL -->
 <PageTitle>Arbeitszeitenrechner</PageTitle>
-
+<div class="table-responsive">
+    <table class="table table-borderless">
+        <thead>
+        <tr>
+            <th class="col-lg-12">
+                <div class="btn-group btn-group-toggle col-lg-12">
+                    <div class="col-lg-2">
+                        <button class="btn btn-primary" @onclick="() => ChangeLanguageToGerman()">Deutschland</button>
+                    </div>
+                    <div class="col-lg-2">
+                        <button class="btn btn-primary" @onclick="() => ChangeLanguageToEnglisch()">English</button>
+                    </div>
+                </div>
+            </th>
+        </tr>
+        </thead>
+    </table>
+</div>
 <div class="table-responsive">
     <table class="table table-borderless">
         <thead>
         <tr>
             <th class="col-lg-6">
                 <div>
-                    <h1>Pausenzeit</h1>
+                    <h1>@L["PauseTime"]</h1>
                 </div>
             </th>
             <th class="col-lg-6">
                 <div>
-                    <h1>Arbeitszeit</h1>
+                    <h1>@L["WorkTime"]</h1>
                 </div>
             </th>
         </tr>
@@ -25,13 +44,13 @@
             <th class="col-lg-6">
                 <div class="btn-group btn-group-toggle col-lg-12" data-toggle="buttons">
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1" checked=@(IsCheckedPause(0)) autocomplete="off" @onclick=@(_ => SetPauseValue(0, null))>
-                    <label class="btn btn-outline-primary" for="btnradio1">0 Minuten</label>
+                    <label class="btn btn-outline-primary" for="btnradio1">0 @L["Minutes"]</label>
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked=@(IsCheckedPause(30)) @onclick=@(_ => SetPauseValue(30, null))>
-                    <label class="btn btn-outline-primary" for="btnradio2">30 Minuten</label>
+                    <label class="btn btn-outline-primary" for="btnradio2">30 @L["Minutes"]</label>
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked=@(IsCheckedPause(45)) @onclick=@(_ => SetPauseValue(45, null))>
-                    <label class="btn btn-outline-primary" for="btnradio3">45 Minuten</label>
+                    <label class="btn btn-outline-primary" for="btnradio3">45 @L["Minutes"]</label>
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" @onclick=@(_ => SetCustomValueActive(0))>
                     <label class="btn btn-outline-primary" for="btnradio4">Custom</label>
@@ -51,16 +70,16 @@
                 <div class="btn-group btn-group-toggle col-lg-12" data-toggle="buttons">
 
                     <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work1" autocomplete="off" @onclick=@(_ => SetWorkValue(6, null))>
-                    <label class="btn btn-outline-primary" for="btn-radio_Work1">6 Stunden</label>
+                    <label class="btn btn-outline-primary" for="btn-radio_Work1">6 @L["Hours"]</label>
 
                     <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work2" autocomplete="off" @onclick=@(_ => SetWorkValue(7, null))>
-                    <label class="btn btn-outline-primary" for="btn-radio_Work2">7 Stunden</label>
+                    <label class="btn btn-outline-primary" for="btn-radio_Work2">7 @L["Hours"]</label>
 
                     <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work3" autocomplete="off" checked @onclick=@(_ => SetWorkValue(8, null))>
-                    <label class="btn btn-outline-primary" for="btn-radio_Work3">8 Stunden</label>
+                    <label class="btn btn-outline-primary" for="btn-radio_Work3">8 @L["Hours"]</label>
 
                     <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work4" autocomplete="off" @onclick=@(_ => SetWorkValue(10, null))>
-                    <label class="btn btn-outline-primary" for="btn-radio_Work4">10 Stunden</label>
+                    <label class="btn btn-outline-primary" for="btn-radio_Work4">10 @L["Hours"]</label>
 
                     <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work5" autocomplete="off" @onclick=@(_ => SetCustomValueActive(1))>
                     <label class="btn btn-outline-primary" for="btn-radio_Work5">Custom</label>
@@ -87,10 +106,10 @@
         <thead>
         <tr>
             <th class="col-lg-6">
-                <h1>Arbeitsbeginn</h1>
+                <h1>@L["WorkStart"]</h1>
             </th>
             <th class="col-lg-6">
-                <h1>Arbeitsende</h1>
+                <h1>@L["WorkEnd"]</h1>
             </th>
         </tr>
         </thead>
@@ -114,16 +133,25 @@
         <h1>Countdown</h1>
     </div>
     <div class="h-100 d-flex align-items-center justify-content-center">
-        <h3>@timeleftAsString</h3>
+        @if (Running)
+        {
+            <h3>@timeleftAsString</h3>
+
+        }
+        else
+        {
+            <h3>@L["EndOfWork"]</h3>
+        }
+        
     </div>
 
     @if (needPause)
     {
         <div class="h-100 d-flex align-items-center justify-content-center">
-            <h3>Bis wann Pause gemacht werden muss: @needPauseValue</h3>
+            <h3>@L["UntilPause"] @needPauseValue</h3>
         </div>
     }
-    <button class="btn btn-primary col-lg-12" data-toggle="button" @onclick=@(_ => CalculateTime(workValue, pauseValue))> Berechne Zeit </button>
+    <button class="btn btn-primary col-lg-12" data-toggle="button" @onclick=@(_ => CalculateTime(workValue, pauseValue))> @L["CalculateTime"]</button>
 </div>
 
 @code
@@ -132,7 +160,6 @@
 
     TimeSpan pauseValue = new TimeSpan(0, 30, 0);
     TimeSpan workValue = new TimeSpan(8, 0, 0);
-    TimeSpan resultTime;
     TimeSpan mustPause = new TimeSpan(hours: 6, 0, 0);
     static TimeSpan timeleft;
 
@@ -142,15 +169,18 @@
 
     DateTime starttime;
     DateTime endtime;
-    DateTime time;
     DateTime whenPause = new DateTime();
 
     #endregion
 
+    private bool Germany;
+    private bool English;
+    private bool Running = true;
+    
     string endtimeString = "00:00";
-    string needPauseValue;
+    string needPauseValue = "00:00";
     bool needPause;
-    static string timeleftAsString = string.Empty;
+    static string timeleftAsString;
 
     bool showCustomPause = false;
     bool showCustomWork = false;
@@ -167,6 +197,16 @@
         var lDotNetReference = DotNetObjectReference.Create(this);
         await JsRuntime.InvokeVoidAsync("GLOBAL.SetDotnetReference", lDotNetReference);
         await JsRuntime.InvokeVoidAsync("isVisible");
+
+        var cultureCheck = new CultureInfo("de");
+        if (CultureInfo.CurrentCulture.Equals(cultureCheck))
+        {
+            ChangeLanguageToGerman();
+        }
+        else
+        {
+            ChangeLanguageToEnglisch();
+        }
         StateHasChanged();
     }
 
@@ -185,14 +225,13 @@
     async Task Timer(CancellationToken ct)
     {
         timeleft = endtime.Subtract(DateTime.Now);
-        timeleftAsString = string.Empty;
         var sec = new TimeSpan(0, 0, 1);
 
         if (ct.IsCancellationRequested)
         {
             if (timeleft <= new TimeSpan())
             {
-                timeleftAsString = "Schönen Feierabend";
+                Running = false;
             }
             return;
         }
@@ -207,7 +246,7 @@
         }
 
 
-        timeleftAsString = "Schönen Feierabend";
+        Running = false;
         StateHasChanged();
     }
 
@@ -249,9 +288,38 @@
         }
     }
 
+    void ChangeLanguageToEnglisch()
+    {
+        var selectedCulture = new CultureInfo("en");
+        Germany = false;
+        English = true;
+        CultureInfo.CurrentCulture = selectedCulture;
+        CultureInfo.CurrentUICulture = selectedCulture;
+        StateHasChanged();
+    }
+
+    void ChangeLanguageToGerman()
+    {
+        var selectedCulture = new CultureInfo("de");
+        Germany = true;
+        English = false;
+        CultureInfo.CurrentCulture = selectedCulture;
+        CultureInfo.CurrentUICulture = selectedCulture;
+        StateHasChanged();
+    }
+
     void CalculateTime(TimeSpan hours, TimeSpan minutes)
     {
         CancellationTokenSource cts = new();
+        
+        if (Germany == true)
+        {
+            ChangeLanguageToGerman();
+        }
+        else
+        {
+            ChangeLanguageToEnglisch();
+        }
 
         if (showCustomWork)
         {
