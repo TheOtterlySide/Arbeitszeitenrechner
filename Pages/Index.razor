@@ -11,10 +11,10 @@
         <tr>
             <th class="col-lg-12">
                 <div class="btn-group btn-group-toggle col-lg-12">
-                    <div class="col-lg-2">
-                        <button class="btn btn-primary" @onclick="() => ChangeLanguageToGerman()">Deutschland</button>
+                    <div class="col-lg-1">
+                        <button class="btn btn-primary" @onclick="() => ChangeLanguageToGerman()">Deutsch</button>
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-1">
                         <button class="btn btn-primary" @onclick="() => ChangeLanguageToEnglisch()">English</button>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
             <h3>@timeleftAsString</h3>
 
         }
-        else
+        @if (Success)
         {
             <h3>@L["EndOfWork"]</h3>
         }
@@ -175,7 +175,8 @@
 
     private bool Germany;
     private bool English;
-    private bool Running = true;
+    private bool Running;
+    private bool Success;
     
     string endtimeString = "00:00";
     string needPauseValue = "00:00";
@@ -198,16 +199,7 @@
         await JsRuntime.InvokeVoidAsync("GLOBAL.SetDotnetReference", lDotNetReference);
         await JsRuntime.InvokeVoidAsync("isVisible");
 
-        var cultureCheck = new CultureInfo("de");
-        if (CultureInfo.CurrentCulture.Equals(cultureCheck))
-        {
-            ChangeLanguageToGerman();
-        }
-        else
-        {
-            ChangeLanguageToEnglisch();
-        }
-        StateHasChanged();
+       
     }
 
     [JSInvokable("setTabActive")]
@@ -224,6 +216,7 @@
 
     async Task Timer(CancellationToken ct)
     {
+        Running = true;
         timeleft = endtime.Subtract(DateTime.Now);
         var sec = new TimeSpan(0, 0, 1);
 
@@ -247,6 +240,7 @@
 
 
         Running = false;
+        Success = true;
         StateHasChanged();
     }
 
@@ -293,8 +287,9 @@
         var selectedCulture = new CultureInfo("en");
         Germany = false;
         English = true;
-        CultureInfo.CurrentCulture = selectedCulture;
-        CultureInfo.CurrentUICulture = selectedCulture;
+        CultureInfo.DefaultThreadCurrentCulture = selectedCulture;
+        CultureInfo.DefaultThreadCurrentUICulture = selectedCulture;
+        
         StateHasChanged();
     }
 
@@ -303,23 +298,14 @@
         var selectedCulture = new CultureInfo("de");
         Germany = true;
         English = false;
-        CultureInfo.CurrentCulture = selectedCulture;
-        CultureInfo.CurrentUICulture = selectedCulture;
+        CultureInfo.DefaultThreadCurrentCulture = selectedCulture;
+        CultureInfo.DefaultThreadCurrentUICulture = selectedCulture;
         StateHasChanged();
     }
 
     void CalculateTime(TimeSpan hours, TimeSpan minutes)
     {
         CancellationTokenSource cts = new();
-        
-        if (Germany == true)
-        {
-            ChangeLanguageToGerman();
-        }
-        else
-        {
-            ChangeLanguageToEnglisch();
-        }
 
         if (showCustomWork)
         {
