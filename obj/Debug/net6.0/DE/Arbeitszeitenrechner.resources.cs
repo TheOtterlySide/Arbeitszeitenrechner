@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Arbeitszeitenrechner")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute(" ")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4d2294bf6f610e290508b0f8131c88e1216de2b4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Arbeitszeitenrechner")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Arbeitszeitenrechner")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

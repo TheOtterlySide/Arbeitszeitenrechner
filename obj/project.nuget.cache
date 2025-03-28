@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uJ6KYBEnXetiL7N/+/hDAh9SjolISFeKzli3C0NjgdrpX1Q3Ix8HhUm9Dn9ob34Yd+eEck+bVwX4UxVk3oxMdg==",
+  "dgSpecHash": "KG8WJdqp66Y=",
   "success": true,
   "projectFilePath": "/Users/elain/Developing/DEV/Arbeitszeitenrechner/Arbeitszeitenrechner.csproj",
   "expectedPackageFiles": [
@@ -77,6 +77,9 @@
     "/Users/elain/.nuget/packages/microsoft.jsinterop/6.0.9/microsoft.jsinterop.6.0.9.nupkg.sha512",
     "/Users/elain/.nuget/packages/microsoft.jsinterop.webassembly/6.0.9/microsoft.jsinterop.webassembly.6.0.9.nupkg.sha512",
     "/Users/elain/.nuget/packages/microsoft.net.http.headers/2.2.0/microsoft.net.http.headers.2.2.0.nupkg.sha512",
+    "/Users/elain/.nuget/packages/microsoft.net.illink.analyzers/7.0.100-1.23401.1/microsoft.net.illink.analyzers.7.0.100-1.23401.1.nupkg.sha512",
+    "/Users/elain/.nuget/packages/microsoft.net.illink.tasks/7.0.100-1.23401.1/microsoft.net.illink.tasks.7.0.100-1.23401.1.nupkg.sha512",
+    "/Users/elain/.nuget/packages/microsoft.net.sdk.webassembly.pack/8.0.11/microsoft.net.sdk.webassembly.pack.8.0.11.nupkg.sha512",
     "/Users/elain/.nuget/packages/microsoft.netcore.platforms/2.0.0/microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "/Users/elain/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "/Users/elain/.nuget/packages/microsoft.win32.primitives/4.3.0/microsoft.win32.primitives.4.3.0.nupkg.sha512",
@@ -193,9 +196,9 @@
     "/Users/elain/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
     "/Users/elain/.nuget/packages/system.xml.xpath/4.3.0/system.xml.xpath.4.3.0.nupkg.sha512",
     "/Users/elain/.nuget/packages/system.xml.xpath.xdocument/4.3.0/system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
-    "/Users/elain/.nuget/packages/microsoft.netcore.app.ref/6.0.24/microsoft.netcore.app.ref.6.0.24.nupkg.sha512",
-    "/Users/elain/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/6.0.24/microsoft.netcore.app.runtime.mono.browser-wasm.6.0.24.nupkg.sha512",
-    "/Users/elain/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.24/microsoft.aspnetcore.app.ref.6.0.24.nupkg.sha512"
+    "/Users/elain/.nuget/packages/microsoft.netcore.app.ref/6.0.36/microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "/Users/elain/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/6.0.36/microsoft.netcore.app.runtime.mono.browser-wasm.6.0.36.nupkg.sha512",
+    "/Users/elain/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.36/microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512"
   ],
   "logs": []
 }

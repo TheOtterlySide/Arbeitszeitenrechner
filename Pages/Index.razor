@@ -117,7 +117,7 @@
         <tr>
             <th class="col-lg-6">
                 <div class="col-lg-12">
-                    <input class="form-control" type="time" @bind="starttime"/>
+                    <input class="form-control" type="time" @bind="starttime" @bind:event="oninput"/>
                 </div>
             </th>
             <th class="col-lg-6">
@@ -136,13 +136,13 @@
         @if (Running)
         {
             <h3>@timeleftAsString</h3>
-
         }
+
         @if (Success)
         {
             <h3>@L["EndOfWork"]</h3>
         }
-        
+
     </div>
 
     @if (needPause)
@@ -156,11 +156,12 @@
 
 @code
 {
+
     #region Timespan
 
-    TimeSpan pauseValue = new TimeSpan(0, 30, 0);
-    TimeSpan workValue = new TimeSpan(8, 0, 0);
-    TimeSpan mustPause = new TimeSpan(hours: 6, 0, 0);
+    TimeSpan pauseValue = new(0, 30, 0);
+    TimeSpan workValue = new(8, 0, 0);
+    TimeSpan mustPause = new(hours: 6, 0, 0);
     static TimeSpan timeleft;
 
     #endregion
@@ -176,8 +177,8 @@
     private bool Germany;
     private bool English;
     private bool Running;
-    private bool Success;
-    
+    private bool Success = false;
+
     string endtimeString = "00:00";
     string needPauseValue = "00:00";
     bool needPause;
@@ -191,26 +192,36 @@
     Task? timeTask = null;
 
     static bool isActive;
-
+    static bool _firstRendered;
 
     protected override async Task OnInitializedAsync()
     {
         var lDotNetReference = DotNetObjectReference.Create(this);
         await JsRuntime.InvokeVoidAsync("GLOBAL.SetDotnetReference", lDotNetReference);
         await JsRuntime.InvokeVoidAsync("isVisible");
+    }
 
-       
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _firstRendered = true;
+        }
     }
 
     [JSInvokable("setTabActive")]
     public void SetActive(bool status)
     {
-        isActive = status;
-        if (isActive && timeleftAsString != string.Empty)
+        if (_firstRendered)
         {
-            CalculateTime(workValue, pauseValue);
+            isActive = status;
+            if (isActive && timeleftAsString != string.Empty)
+            {
+                CalculateTime(workValue, pauseValue);
+            }
+
+            StateHasChanged();
         }
-        StateHasChanged();
     }
 
 
@@ -226,6 +237,7 @@
             {
                 Running = false;
             }
+
             return;
         }
 
@@ -271,7 +283,7 @@
     {
         if (id == 0)
         {
-    //Show Custom Pause Input
+            //Show Custom Pause Input
             showCustomPause = !showCustomPause;
             StateHasChanged();
         }
@@ -289,7 +301,7 @@
         English = true;
         CultureInfo.DefaultThreadCurrentCulture = selectedCulture;
         CultureInfo.DefaultThreadCurrentUICulture = selectedCulture;
-        
+
         StateHasChanged();
     }
 
