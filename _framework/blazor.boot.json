@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "Arbeitszeitenrechner.dll": "sha256-2ITnN7Ro\/sKhlMyRJ0Cg9QQIPpc4K8w19EswcpPhVmo=",
+      "Arbeitszeitenrechner.dll": "sha256-E20Vyg9WJnqaVMufgR0RFEpLie5jBFi0owdE5kn+fBk=",
       "Microsoft.AspNetCore.Antiforgery.dll": "sha256-Y2IlVPGCtCVesQ9wWBBKZPWL8cKX3SC0xk7hL9rkrY0=",
       "Microsoft.AspNetCore.Authentication.Abstractions.dll": "sha256-iw51tdKcETC5QqlJLWett1iPlLZgUrRdZfkV7EoaD4k=",
       "Microsoft.AspNetCore.Authentication.Core.dll": "sha256-NP2svkDxlIVJsMiWAmj552NCYo4j7YnOUr2+jkz5+pc=",
