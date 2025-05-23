@@ -215,7 +215,7 @@
         if (_firstRendered)
         {
             isActive = status;
-            if (isActive && timeleftAsString != string.Empty)
+            if (isActive && timeleftAsString != string.Empty && Running)
             {
                 CalculateTime(workValue, pauseValue);
             }
