@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Arbeitszeitenrechner",
   "resources": {
-    "hash": "sha256-U5wSKRK2i4CeESrTfWWy7i0Q4/X+PLgQ0pHUGb6/2iQ=",
+    "hash": "sha256-NUCTMqzxS3k+wrkN6vZG0Sj5fAxEAH0VxGz5rrGZ+7Y=",
     "fingerprinting": {
       "Palermo.BlazorMvc.s1x55dyijy.wasm": "Palermo.BlazorMvc.wasm",
       "Microsoft.AspNetCore.Antiforgery.6o6s7kl4ot.wasm": "Microsoft.AspNetCore.Antiforgery.wasm",
@@ -251,9 +251,9 @@
       "dotnet.native.pk43x8e436.wasm": "dotnet.native.wasm",
       "dotnet.runtime.ew19f13umk.js": "dotnet.runtime.js",
       "icudt.oh1zvcfom8.dat": "icudt.dat",
-      "Arbeitszeitenrechner.ez4h3t3er0.wasm": "Arbeitszeitenrechner.wasm",
-      "Arbeitszeitenrechner.yf2hv3qbsb.pdb": "Arbeitszeitenrechner.pdb",
-      "Arbeitszeitenrechner.resources.dtypz4064r.wasm": "Arbeitszeitenrechner.resources.wasm"
+      "Arbeitszeitenrechner.g47xn1eqtq.wasm": "Arbeitszeitenrechner.wasm",
+      "Arbeitszeitenrechner.rrsv4u8n1b.pdb": "Arbeitszeitenrechner.pdb",
+      "Arbeitszeitenrechner.resources.sqngbkvaoq.wasm": "Arbeitszeitenrechner.resources.wasm"
     },
     "jsModuleNative": {
       "dotnet.native.50iqa8w3ys.js": "sha256-pQdXuxfVeqYHOwd5HUM2ERd7OnXirj9JTF37b6OdTAc="
@@ -513,14 +513,14 @@
       "WindowsBase.361km0836k.wasm": "sha256-FacUCEIJYTnbOWgX/R9QP2QnurqRZwRIkDAH0N9z69s=",
       "mscorlib.qiu3j3msqk.wasm": "sha256-QvztpxTOEw4aMIl7zP3QtsPLNv/IWaK5wq22J4ReGrA=",
       "netstandard.lp03u0xxi4.wasm": "sha256-WVQsxULiAiEbyXLKolS7txnWVT82SsvsuMe4jJ+SqqI=",
-      "Arbeitszeitenrechner.ez4h3t3er0.wasm": "sha256-elpNTEFpZ4U4gO2OjJIks2hW4Sk8Jt4wFQ0a5027jDE="
+      "Arbeitszeitenrechner.g47xn1eqtq.wasm": "sha256-sOKFiKSJQu/HcVpINPYGDXJAevD1bQkOEvhMuiSG8L4="
     },
     "pdb": {
-      "Arbeitszeitenrechner.yf2hv3qbsb.pdb": "sha256-Yg5dhLA2u+2557DzXLTMYLliuPvRJBgxBastSn6ZbIw="
+      "Arbeitszeitenrechner.rrsv4u8n1b.pdb": "sha256-mWAG34EOppuXfKt2uA0R3Q4Q2RDi/hGcXeZL3LQmZfw="
     },
     "satelliteResources": {
       "de": {
-        "Arbeitszeitenrechner.resources.dtypz4064r.wasm": "sha256-gY8zLlRZKT97nWCgIEbKG9ugxWh4KnBUE4uhxmGHZmU="
+        "Arbeitszeitenrechner.resources.sqngbkvaoq.wasm": "sha256-zPhTKachLuecR7Vi1d/0Nn2d0iZ75Bn/l/VwuowWMhE="
       }
     }
   },

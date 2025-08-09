@@ -249,7 +249,6 @@
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/dotnet.runtime.ew19f13umk.js
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/dotnet.runtime.js.map
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/icudt.oh1zvcfom8.dat
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/de/Arbeitszeitenrechner.resources.dtypz4064r.wasm
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/blazor.boot.json
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/blazor.webassembly.js.gz
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/Palermo.BlazorMvc.s1x55dyijy.wasm.gz
@@ -502,7 +501,6 @@
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/dotnet.runtime.ew19f13umk.js.gz
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/dotnet.runtime.js.map.gz
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/icudt.oh1zvcfom8.dat.gz
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/de/Arbeitszeitenrechner.resources.dtypz4064r.wasm.gz
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/blazor.boot.json.gz
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/Arbeitszeitenrechner.staticwebassets.runtime.json
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/Arbeitszeitenrechner.staticwebassets.endpoints.json
@@ -1288,7 +1286,6 @@
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/xrrutwsed2-ew19f13umk.gz
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/q19yia0rde-i8ixevln79.gz
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/4pha3qyhvn-oh1zvcfom8.gz
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/52rbvjcyia-dtypz4064r.gz
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/staticwebassets.build.json
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/staticwebassets.build.json.cache
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/staticwebassets.development.json
@@ -1301,10 +1298,13 @@
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/wxs4zrpmcm-xxcaf3ugkz.gz
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/336brf5n3w-xp3q5gb30z.gz
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/mrun5rsclx-qx5zks71cp.gz
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/Arbeitszeitenrechner.ez4h3t3er0.wasm
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/Arbeitszeitenrechner.yf2hv3qbsb.pdb
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/Arbeitszeitenrechner.ez4h3t3er0.wasm.gz
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/Arbeitszeitenrechner.yf2hv3qbsb.pdb.gz
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/p8i6zf01nm-ez4h3t3er0.gz
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/24umh0nkve-yf2hv3qbsb.gz
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/ds11iyahy4-qr265gpcgc.gz
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/Arbeitszeitenrechner.g47xn1eqtq.wasm
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/Arbeitszeitenrechner.rrsv4u8n1b.pdb
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/de/Arbeitszeitenrechner.resources.sqngbkvaoq.wasm
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/Arbeitszeitenrechner.g47xn1eqtq.wasm.gz
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/Arbeitszeitenrechner.rrsv4u8n1b.pdb.gz
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/bin/Debug/net9.0/wwwroot/_framework/de/Arbeitszeitenrechner.resources.sqngbkvaoq.wasm.gz
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/p8i6zf01nm-g47xn1eqtq.gz
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/24umh0nkve-rrsv4u8n1b.gz
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/52rbvjcyia-sqngbkvaoq.gz
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net9.0/compressed/ds11iyahy4-qljc9z3pk6.gz
