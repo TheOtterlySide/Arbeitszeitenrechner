@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
@@ -9,10 +9,10 @@
 
     <ItemGroup>
         <PackageReference Include="BlazorMvc" Version="2.1.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.9" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.9" PrivateAssets="all" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.2.0" />
-        <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.27" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.8" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.8" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.3.0" />
+        <PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.8" />
     </ItemGroup>
 
     <ItemGroup>

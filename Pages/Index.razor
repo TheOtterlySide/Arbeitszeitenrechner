@@ -17,6 +17,11 @@
                     <div class="col-lg-1">
                         <button class="btn btn-primary" @onclick="() => ChangeLanguageToEnglisch()">English</button>
                     </div>
+                    <div class="col-lg-1">
+                        <button class="btn btn-primary" title="Design wechseln"  @onclick="() => ToggleTheme()">
+                            <i class=@iconClass></i>
+                        </button>
+                    </div>
                 </div>
             </th>
         </tr>
@@ -183,6 +188,7 @@
     string needPauseValue = "00:00";
     bool needPause;
     static string timeleftAsString;
+    string iconClass = "bi bi-brightness-high-fill";
 
     bool showCustomPause = false;
     bool showCustomWork = false;
@@ -206,6 +212,20 @@
         if (firstRender)
         {
             _firstRendered = true;
+            await JsRuntime.InvokeVoidAsync("initThemeToggle");
+        }
+    }
+
+    private async Task ToggleTheme()
+    {
+        await JsRuntime.InvokeVoidAsync("themeManager.toggle");
+        if (iconClass == "bi bi-brightness-high-fill")
+        {
+            iconClass = "bi bi-moon-stars";
+        }
+        else
+        {
+            iconClass = "bi bi-brightness-high-fill";
         }
     }
 
