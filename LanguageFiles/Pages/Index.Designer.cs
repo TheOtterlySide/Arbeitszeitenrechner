@@ -104,5 +104,11 @@ namespace Arbeitszeitenrechner.LanguageFiles.Pages {
                 return ResourceManager.GetString("EndOfWork", resourceCulture);
             }
         }
+        
+        internal static string WorkCooldown {
+            get {
+                return ResourceManager.GetString("WorkCooldown", resourceCulture);
+            }
+        }
     }
 }

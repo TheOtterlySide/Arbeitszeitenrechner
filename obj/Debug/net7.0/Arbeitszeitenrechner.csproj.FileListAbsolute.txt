@@ -1034,10 +1034,10 @@
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/compressed/ebnp7xbv4n-kxj591kajg.gz
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/compressed/cf91obz1uz-oh1zvcfom8.gz
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/compressed/o7pwv6bzx5-7cxe8oq9xu.gz
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/compressed/opayhmskvr-v0jjwq5wzd.gz
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/compressed/qfxnrw980r-po3gef0e6f.gz
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/compressed/b7q1fpm20e-v2qqvg0666.gz
-/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/compressed/ds11iyahy4-vlpknjenho.gz
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/staticwebassets.build.json.cache
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/staticwebassets.build.endpoints.json
 /Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/Arbeitsz.81DAF96A.Up2Date
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/compressed/b7q1fpm20e-vw34zhwe0x.gz
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/compressed/opayhmskvr-wqd6fvs08g.gz
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/compressed/qfxnrw980r-0tuk7g1sfq.gz
+/Users/elain/Developing/DEV/Arbeitszeitenrechner/obj/Debug/net7.0/compressed/ds11iyahy4-b380iqcml9.gz

@@ -41,4 +41,7 @@
     <data name="EndOfWork" xml:space="preserve">
         <value>Schönen Feierabend</value>
     </data>
+    <data name="WorkCooldown" xml:space="preserve">
+        <value>Frühester Arbeitsbeginn am nächsten Tag:</value>
+    </data>
 </root>

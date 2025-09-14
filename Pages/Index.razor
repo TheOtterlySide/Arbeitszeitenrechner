@@ -18,8 +18,8 @@
                         <button class="btn btn-primary" @onclick="() => ChangeLanguageToEnglisch()">English</button>
                     </div>
                     <div class="col-lg-1">
-                        <button class="btn btn-primary" title="Design wechseln"  @onclick="() => ToggleTheme()">
-                            <i class=@iconClass></i>
+                        <button class="btn btn-primary" title="Design wechseln" @onclick="() => ToggleTheme()">
+                            <i class=@_iconClass></i>
                         </button>
                     </div>
                 </div>
@@ -60,12 +60,12 @@
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" @onclick=@(_ => SetCustomValueActive(0))>
                     <label class="btn btn-outline-primary" for="btnradio4">Custom</label>
 
-                    @if (showCustomPause)
+                    @if (_showCustomPause)
                     {
                         <tr>
                             <th scope="row"></th>
                             <td>
-                                <input type="number" class="form-control mx-2" @bind="customPauseValue"/>
+                                <input type="number" class="form-control mx-2" @bind="_customPauseValue"/>
                             </td>
                         </tr>
                     }
@@ -89,12 +89,12 @@
                     <input type="radio" class="btn-check" name="btn-radio_Work" id="btn-radio_Work5" autocomplete="off" @onclick=@(_ => SetCustomValueActive(1))>
                     <label class="btn btn-outline-primary" for="btn-radio_Work5">Custom</label>
 
-                    @if (showCustomWork)
+                    @if (_showCustomWork)
                     {
                         <tr>
                             <th scope="row"></th>
                             <td>
-                                <input type="number" class="form-control mx-2" @bind="customWorkValue"/>
+                                <input type="number" class="form-control mx-2" @bind="_customWorkValue"/>
                             </td>
                         </tr>
                     }
@@ -122,12 +122,12 @@
         <tr>
             <th class="col-lg-6">
                 <div class="col-lg-12">
-                    <input class="form-control" type="time" @bind="starttime" @bind:event="oninput"/>
+                    <input class="form-control" type="time" @bind="_starttime" @bind:event="oninput"/>
                 </div>
             </th>
             <th class="col-lg-6">
                 <div class="col-lg-12">
-                    <h3 class="form-control">@endtimeString</h3>
+                    <input type="text" class="form-control" value="@_endtimeString" disabled>
                 </div>
             </th>
         </tr>
@@ -137,26 +137,27 @@
     <div class="h-100 d-flex align-items-center justify-content-center">
         <h1>Countdown</h1>
     </div>
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        @if (Running)
+    <div class="h-100 d-flex flex-column align-items-center justify-content-center">
+        @if (_running)
         {
-            <h3>@timeleftAsString</h3>
+            <h3 class="mb-3">@_timeleftAsString</h3>
+            <h3>@L["WorkCooldown"] @_whenNextWorkTimeString </h3>
         }
 
-        @if (Success)
+        @if (_success)
         {
             <h3>@L["EndOfWork"]</h3>
         }
 
     </div>
 
-    @if (needPause)
+    @if (_needPause)
     {
         <div class="h-100 d-flex align-items-center justify-content-center">
-            <h3>@L["UntilPause"] @needPauseValue</h3>
+            <h3>@L["UntilPause"] @_needPauseValue</h3>
         </div>
     }
-    <button class="btn btn-primary col-lg-12" data-toggle="button" @onclick=@(_ => CalculateTime(workValue, pauseValue))> @L["CalculateTime"]</button>
+    <button class="btn btn-primary col-lg-12" data-toggle="button" @onclick=@(_ => CalculateTime(_workValue, _pauseValue))> @L["CalculateTime"]</button>
 </div>
 
 @code
@@ -164,40 +165,43 @@
 
     #region Timespan
 
-    TimeSpan pauseValue = new(0, 30, 0);
-    TimeSpan workValue = new(8, 0, 0);
-    TimeSpan mustPause = new(hours: 6, 0, 0);
-    static TimeSpan timeleft;
+    TimeSpan _pauseValue = new(0, 30, 0);
+    TimeSpan _workValue = new(8, 0, 0);
+    readonly TimeSpan _mustPause = new(hours: 6, 0, 0);
+    static TimeSpan _timeleft;
 
     #endregion
 
     #region DateTime
 
-    DateTime starttime;
-    DateTime endtime;
-    DateTime whenPause = new DateTime();
+    DateTime _starttime;
+    DateTime _endtime;
+    DateTime _whenNextWorkTime;
+    DateTime _whenPause = new DateTime();
 
     #endregion
 
-    private bool Germany;
-    private bool English;
-    private bool Running;
-    private bool Success = false;
+    private bool _germany;
+    private bool _english;
+    private bool _running;
+    private bool _success = false;
 
-    string endtimeString = "00:00";
-    string needPauseValue = "00:00";
-    bool needPause;
-    static string timeleftAsString;
-    string iconClass = "bi bi-brightness-high-fill";
+    string _endtimeString = "00:00";
+    string _needPauseValue = "00:00";
+    readonly double _workCoolDown = 11;
+    string _whenNextWorkTimeString = "00:00";
+    bool _needPause;
+    static string _timeleftAsString;
+    string _iconClass = "bi bi-brightness-high-fill";
 
-    bool showCustomPause = false;
-    bool showCustomWork = false;
-    int customPauseValue;
-    int customWorkValue;
+    bool _showCustomPause = false;
+    bool _showCustomWork = false;
+    int _customPauseValue;
+    int _customWorkValue;
 
-    Task? timeTask = null;
+    Task? _timeTask = null;
 
-    static bool isActive;
+    static bool _isActive;
     static bool _firstRendered;
 
     protected override async Task OnInitializedAsync()
@@ -219,13 +223,13 @@
     private async Task ToggleTheme()
     {
         await JsRuntime.InvokeVoidAsync("themeManager.toggle");
-        if (iconClass == "bi bi-brightness-high-fill")
+        if (_iconClass == "bi bi-brightness-high-fill")
         {
-            iconClass = "bi bi-moon-stars";
+            _iconClass = "bi bi-moon-stars";
         }
         else
         {
-            iconClass = "bi bi-brightness-high-fill";
+            _iconClass = "bi bi-brightness-high-fill";
         }
     }
 
@@ -234,10 +238,10 @@
     {
         if (_firstRendered)
         {
-            isActive = status;
-            if (isActive && timeleftAsString != string.Empty && Running)
+            _isActive = status;
+            if (_isActive && _timeleftAsString != string.Empty && _running)
             {
-                CalculateTime(workValue, pauseValue);
+                CalculateTime(_workValue, _pauseValue);
             }
 
             StateHasChanged();
@@ -247,40 +251,40 @@
 
     async Task Timer(CancellationToken ct)
     {
-        Running = true;
-        timeleft = endtime.Subtract(DateTime.Now);
+        _running = true;
+        _timeleft = _endtime.Subtract(DateTime.Now);
         var sec = new TimeSpan(0, 0, 1);
 
         if (ct.IsCancellationRequested)
         {
-            if (timeleft <= new TimeSpan())
+            if (_timeleft <= new TimeSpan())
             {
-                Running = false;
+                _running = false;
             }
 
             return;
         }
 
-        while (timeleft > new TimeSpan())
+        while (_timeleft > new TimeSpan())
         {
             await Task.Delay(1000);
-            timeleft = timeleft.Subtract(sec);
-            timeleftAsString = timeleft.ToString("hh':'mm':'ss");
+            _timeleft = _timeleft.Subtract(sec);
+            _timeleftAsString = _timeleft.ToString("hh':'mm':'ss");
             ct.ThrowIfCancellationRequested();
             StateHasChanged();
         }
 
 
-        Running = false;
-        Success = true;
+        _running = false;
+        _success = true;
         StateHasChanged();
     }
 
     private void SetPauseValue(int val, int? id)
     {
         if (id != null) return;
-        showCustomPause = false;
-        pauseValue = new TimeSpan(0, val, 0);
+        _showCustomPause = false;
+        _pauseValue = new TimeSpan(0, val, 0);
         StateHasChanged();
     }
 
@@ -288,8 +292,8 @@
     private void SetWorkValue(int val, int? id)
     {
         if (id != null) return;
-        showCustomWork = false;
-        workValue = new TimeSpan(val, 0, 0);
+        _showCustomWork = false;
+        _workValue = new TimeSpan(val, 0, 0);
 
         if (val >= 9)
         {
@@ -304,12 +308,12 @@
         if (id == 0)
         {
             //Show Custom Pause Input
-            showCustomPause = !showCustomPause;
+            _showCustomPause = !_showCustomPause;
             StateHasChanged();
         }
         else
         {
-            showCustomWork = !showCustomWork;
+            _showCustomWork = !_showCustomWork;
             StateHasChanged();
         }
     }
@@ -317,8 +321,8 @@
     void ChangeLanguageToEnglisch()
     {
         var selectedCulture = new CultureInfo("en");
-        Germany = false;
-        English = true;
+        _germany = false;
+        _english = true;
         CultureInfo.DefaultThreadCurrentCulture = selectedCulture;
         CultureInfo.DefaultThreadCurrentUICulture = selectedCulture;
 
@@ -328,8 +332,8 @@
     void ChangeLanguageToGerman()
     {
         var selectedCulture = new CultureInfo("de");
-        Germany = true;
-        English = false;
+        _germany = true;
+        _english = false;
         CultureInfo.DefaultThreadCurrentCulture = selectedCulture;
         CultureInfo.DefaultThreadCurrentUICulture = selectedCulture;
         StateHasChanged();
@@ -339,40 +343,41 @@
     {
         CancellationTokenSource cts = new();
 
-        if (showCustomWork)
+        if (_showCustomWork)
         {
-            hours = new TimeSpan(customWorkValue, 0, 0);
+            hours = new TimeSpan(_customWorkValue, 0, 0);
         }
 
-        if (showCustomPause)
+        if (_showCustomPause)
         {
-            minutes = new TimeSpan(0, customPauseValue, 0);
+            minutes = new TimeSpan(0, _customPauseValue, 0);
         }
 
-        endtime = starttime + DateTime.Today.TimeOfDay + hours + minutes;
-        whenPause = starttime + mustPause;
+        _endtime = _starttime + DateTime.Today.TimeOfDay + hours + minutes;
+        _whenPause = _starttime + _mustPause;
 
-        if (workValue > new TimeSpan(6, 0, 0))
+        if (_workValue > new TimeSpan(6, 0, 0))
         {
-            needPause = true;
-            needPauseValue = whenPause.ToString("HH:mm");
+            _needPause = true;
+            _needPauseValue = _whenPause.ToString("HH:mm");
         }
 
-        endtimeString = endtime.ToString("HH:mm");
-
-        if (timeTask != null)
+        _endtimeString = _endtime.ToString("t", CultureInfo.CurrentCulture);
+        _whenNextWorkTime = _endtime.AddHours(_workCoolDown);
+        _whenNextWorkTimeString = _whenNextWorkTime.ToString("t", CultureInfo.CurrentCulture);
+        if (_timeTask != null)
         {
             cts.Cancel();
             cts.TryReset();
-            timeTask = Timer(cts.Token);
+            _timeTask = Timer(cts.Token);
         }
 
-        timeTask = Timer(cts.Token);
+        _timeTask = Timer(cts.Token);
     }
 
     private bool IsCheckedPause(int value)
     {
-        var result = pauseValue.Minutes == value;
+        var result = _pauseValue.Minutes == value;
         return result;
     }
 }

@@ -1,7 +1,7 @@
 {
   "entryAssembly": "Arbeitszeitenrechner",
   "resources": {
-    "hash": "sha256-IqDiPuNeBl+eJpC5Q3Uvo47vXZsqz0Jg230AMfIFhVU=",
+    "hash": "sha256-h1wSyouTXjVOtbcaoEGL+1gzayZ+y+UrrIkOeyLdWZk=",
     "runtime": {
       "dotnet.js": "sha256-eaJTmow4t8eE7FZMZR5Ja41JMOefGCbIYDTdpclGsac=",
       "dotnet.timezones.blat": "sha256-gbATD5HDsHYtW8vdPYh9iSBY4O5CjvMeCSF5xXWF1xo=",
@@ -253,14 +253,14 @@
       "mscorlib.dll": "sha256-HYyp9hO+GKFyupcEiY1PxtBBXbHzefsO3Q8RiQTaNCA=",
       "netstandard.dll": "sha256-N5CcC3sLzGBesbmeJAp5bwxABN9u7SwkIO5qfFjzoik=",
       "System.Private.CoreLib.dll": "sha256-bJS1DJmhjP7PvegYG+Z8O9EDtRY78HKinA3LUMVLlSQ=",
-      "Arbeitszeitenrechner.dll": "sha256-D//gtQSEavV1QbiyaB2O30S1228dTo1GPQyCtIqG1jY="
+      "Arbeitszeitenrechner.dll": "sha256-GJYcVMi/2eMPPCwUOEqRI1JiRmyiox0MWwdRPT4wEC4="
     },
     "pdb": {
-      "Arbeitszeitenrechner.pdb": "sha256-V5/EKYuxE+P+VMprfv4e6Sa4h2u6+ljurBiOr+m5DBE="
+      "Arbeitszeitenrechner.pdb": "sha256-9I+hXaYfrUlZ73/tU+dspXlvlPv/XwaGmjby0IWHW8E="
     },
     "satelliteResources": {
       "de": {
-        "de/Arbeitszeitenrechner.resources.dll": "sha256-ebqENY3rfgepGRvNa5OY1y+mUwfpMbY9KCx41H92UUU="
+        "de/Arbeitszeitenrechner.resources.dll": "sha256-z1N2bN/IUEhZiWMt83UTwlsUSbuBKusnt0flKLy6lR8="
       }
     },
     "runtimeAssets": {

@@ -48,4 +48,7 @@
     <data name="EndOfWork" xml:space="preserve">
         <value>Have a nice evening</value>
     </data>
+    <data name="WorkCooldown" xml:space="preserve">
+        <value>When to legally start work next day:</value>
+    </data>
 </root>
