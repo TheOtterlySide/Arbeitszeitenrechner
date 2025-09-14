@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "Arbeitszeitenrechner.dll": "sha256-yoNJc2J9zwUpde+obHdFjzHxWore2BGYLI3UFuAx308=",
+      "Arbeitszeitenrechner.dll": "sha256-k8m78H4kC4S6SHiL+xy3r+EUayE3aVHuMMC+gRyfdqk=",
       "Microsoft.AspNetCore.Antiforgery.dll": "sha256-GzXQF0Q8WFicXkJ3Vhv8lse1qI+cB5+NC8OvMuw3yhA=",
       "Microsoft.AspNetCore.Authentication.Abstractions.dll": "sha256-mbWffX8UxOrsMFJeZNQJZCO1gvTNaClvS0ddrNnAA7U=",
       "Microsoft.AspNetCore.Authentication.Core.dll": "sha256-vMr6y2PtT\/7eMQHQdMXJrNJYhyRl8wWZIMLkpaqCr\/U=",
@@ -171,7 +171,7 @@
     },
     "satelliteResources": {
       "de": {
-        "de\/Arbeitszeitenrechner.resources.dll": "sha256-7XjpAivhdeFDUUMEp4K7j9T\/TjRkQDhnMZKez8L95ZU="
+        "de\/Arbeitszeitenrechner.resources.dll": "sha256-vsaY0wrcA\/TdnQUQYGOj05ZwTrEzCeZbNSD2JdGF6Yk="
       }
     }
   }
