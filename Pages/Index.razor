@@ -191,7 +191,7 @@
     readonly double _workCoolDown = 11;
     string _whenNextWorkTimeString = "00:00";
     bool _needPause;
-    static string _timeleftAsString;
+    string _timeleftAsString = String.Empty;
     string _iconClass = "bi bi-brightness-high-fill";
 
     bool _showCustomPause = false;
@@ -201,8 +201,9 @@
 
     Task? _timeTask = null;
 
-    static bool _isActive;
-    static bool _firstRendered;
+    bool _isActive;
+    bool _firstRendered;
+    CancellationTokenSource? _cts;
 
     protected override async Task OnInitializedAsync()
     {
@@ -248,36 +249,25 @@
         }
     }
 
-
     async Task Timer(CancellationToken ct)
     {
         _running = true;
-        _timeleft = _endtime.Subtract(DateTime.Now);
-        var sec = new TimeSpan(0, 0, 1);
 
-        if (ct.IsCancellationRequested)
+        while (!ct.IsCancellationRequested)
         {
-            if (_timeleft <= new TimeSpan())
-            {
-                _running = false;
-            }
+            _timeleft = _endtime - DateTime.Now;
 
-            return;
-        }
+            if (_timeleft <= TimeSpan.Zero)
+                break;
 
-        while (_timeleft > new TimeSpan())
-        {
-            await Task.Delay(1000);
-            _timeleft = _timeleft.Subtract(sec);
             _timeleftAsString = _timeleft.ToString("hh':'mm':'ss");
-            ct.ThrowIfCancellationRequested();
-            StateHasChanged();
+            await InvokeAsync(StateHasChanged);
+            await Task.Delay(1000, ct);
         }
-
 
         _running = false;
         _success = true;
-        StateHasChanged();
+        await InvokeAsync(StateHasChanged);
     }
 
     private void SetPauseValue(int val, int? id)
@@ -341,22 +331,27 @@
 
     void CalculateTime(TimeSpan hours, TimeSpan minutes)
     {
-        CancellationTokenSource cts = new();
+        _cts?.Cancel();
+        _cts = new CancellationTokenSource();
+
+        _running = false;
+        _success = false;
+        _needPause = false;
+        _timeleftAsString = string.Empty;
 
         if (_showCustomWork)
         {
             hours = new TimeSpan(_customWorkValue, 0, 0);
         }
-
+        
         if (_showCustomPause)
         {
             minutes = new TimeSpan(0, _customPauseValue, 0);
         }
-
-        _endtime = _starttime + DateTime.Today.TimeOfDay + hours + minutes;
+        _endtime = _starttime + hours + minutes;
         _whenPause = _starttime + _mustPause;
 
-        if (_workValue > new TimeSpan(6, 0, 0))
+        if (hours > _mustPause)
         {
             _needPause = true;
             _needPauseValue = _whenPause.ToString("HH:mm");
@@ -365,15 +360,17 @@
         _endtimeString = _endtime.ToString("t", CultureInfo.CurrentCulture);
         _whenNextWorkTime = _endtime.AddHours(_workCoolDown);
         _whenNextWorkTimeString = _whenNextWorkTime.ToString("t", CultureInfo.CurrentCulture);
-        if (_timeTask != null)
+
+        if (_endtime <= DateTime.Now)
         {
-            cts.Cancel();
-            cts.TryReset();
-            _timeTask = Timer(cts.Token);
+            _success = true;
+            StateHasChanged();
+            return;
         }
 
-        _timeTask = Timer(cts.Token);
+        _timeTask = Timer(_cts.Token);
     }
+
 
     private bool IsCheckedPause(int value)
     {
