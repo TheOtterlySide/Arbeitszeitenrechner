@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "Arbeitszeitenrechner.dll": "sha256-k8m78H4kC4S6SHiL+xy3r+EUayE3aVHuMMC+gRyfdqk=",
+      "Arbeitszeitenrechner.dll": "sha256-diAEwSsFk2AjlFQpAjkJcOIbDt+XWkVFhpW3UdLS0mM=",
       "Microsoft.AspNetCore.Antiforgery.dll": "sha256-GzXQF0Q8WFicXkJ3Vhv8lse1qI+cB5+NC8OvMuw3yhA=",
       "Microsoft.AspNetCore.Authentication.Abstractions.dll": "sha256-mbWffX8UxOrsMFJeZNQJZCO1gvTNaClvS0ddrNnAA7U=",
       "Microsoft.AspNetCore.Authentication.Core.dll": "sha256-vMr6y2PtT\/7eMQHQdMXJrNJYhyRl8wWZIMLkpaqCr\/U=",
@@ -109,7 +109,7 @@
       "System.Net.Primitives.dll": "sha256-VnFhGJ59XM2oI1EeRHb+FqV1LjVHrwonEbmqcVEhjEM=",
       "System.Net.WebSockets.dll": "sha256-CeU0OfIdJ8yExTxNXSSsshkYXols0Td4fy+F98BOo0c=",
       "System.ObjectModel.dll": "sha256-PoqelCwv5fVV0UP4raFLuUkK\/UMxaFSFk519IGW+c5M=",
-      "System.Private.CoreLib.dll": "sha256-LIh3wj1\/Tw9mBsBYwhp6mjhnEH35XHruN+y+BaBjtp4=",
+      "System.Private.CoreLib.dll": "sha256-ADy+zKauhWiZ+LfHYOskANmeXZ7qLZFx55TNKgPLEr0=",
       "System.Private.Uri.dll": "sha256-6RDPktHfyTlwcyBOB+U8HRKO2tbTw5uEikCxMr+9lpA=",
       "System.Private.Xml.dll": "sha256-98cTZ9+ufL33iWwOHMoE9T\/KaKJJne34mkE6VfNpXP8=",
       "System.Private.Xml.Linq.dll": "sha256-Vj2m91nr7vZbFKEtqWDWj5NB4MzVNJILp22ycM4IwsQ=",
